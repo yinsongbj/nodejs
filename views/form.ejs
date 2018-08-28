@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title><%= title %></title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+  </head>
+  <body>
+	<form method="post" action="/form">
+	    <label>new article</label><br>
+		<textarea name="text" cols="100" row="5"></textarea>
+		<input type="submit" value="pus"></input>
+	</form>
+	<div><%=message%></div>
+  </body>
+</html>
