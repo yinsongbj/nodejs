@@ -1,0 +1,16 @@
+{
+  "name": "eth",
+  "version": "1.0.0",
+  "description": "test eth accounts",
+  "main": "account.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "keccak": "^2.0.0",
+    "keythereum": "^1.0.4",
+    "secp256k1": "^3.5.2"
+  }
+}

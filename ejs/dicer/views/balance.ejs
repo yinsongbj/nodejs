@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <script type="text/javascript">
+        if (typeof web3 !== 'undefined') {
+            web3 = new Web3(web3.currentProvider);
+            //alert("current providers");
+        } else {
+            // Set the provider you want from Web3.providers
+            web3 = new Web3(new Web3.providers.HttpProvider("http://localhost:8545"));
+        }
+        //web3.setProvider(new web3.providers.HttpProvider("http://127.0.0.1:8545"));
+
+        function watchBalance() {
+            var coinbase = web3.eth.coinbase;
+            //var coinbase = "0x87335e609C6918cC87D3BeF21D8c8b9CE9B2b060";
+
+            var originalBalance = 0;
+            web3.eth.getBalance(coinbase, function(err, val){
+                if ( err ) { throw err;}
+                originalBalance = web3.fromWei(val);
+                document.getElementById('original').innerText = ' original balance: ' + originalBalance + '    watching...';
+            });
+            document.getElementById('coinbase').innerText = 'coinbase: ' + coinbase;
+
+            web3.eth.filter('latest').watch(function(){
+                //alert("filter");
+                web3.eth.getBalance(coinbase, function(err, val){
+                    var currentBalance = web3.fromWei(val);
+                    document.getElementById("current").innerText = 'current: ' + currentBalance;
+                    document.getElementById("diff").innerText = 'diff:    ' + (currentBalance - originalBalance);                
+                });
+            });
+        }
+</script>
+</head>
+<body>
+    <h1>coinbase balance</h1>
+    <button type="button" onClick="watchBalance();">watch balance</button>
+    <div></div>
+    <div id="coinbase"></div>
+    <div id="original"></div>
+    <div id="current"></div>
+    <div id="diff"></div>
+</body>
+</html>
+
