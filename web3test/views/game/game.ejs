@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+	<title>game demo</title>
+</head>
+<body>
+	<h1>日本骰子</h1>
+	<% if('undefined' !== typeof(poolfund)) {%>
+			<p>奖池：<%=poolfund%></p>
+	<% }%>
+	<% if('undefined' !== typeof(id)) {%>
+			<p>期号：<%=id%></p>
+	<% }%>
+	<form id="create" method="post" action="/game/doBet">
+		<label> 帐号：</label><input type="text" name="user_address" />
+		<label> 私钥：</label><input type="text" name="user_private" />
+		<input type="submit" value="投注" /><br>
+	</form>
+	<div>
+		<% if('undefined' !== typeof(player)) {%>
+			<p>投注者：<%=player%></p>
+		<% }%>
+		<% if('undefined' !== typeof(first)) {%>
+			<p>第一个骰子：<%=first%></p>
+		<% }%>
+		<% if('undefined' !== typeof(second)) {%>
+			<p>第一个骰子：<%=second%></p>
+		<% }%>
+	</div>
+	<div><a href="/game/history">当期投注历史</a></div>
+</body>
+</html>

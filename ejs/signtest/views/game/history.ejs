@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+	<title>game demo</title>
+</head>
+<body>
+	<h1>日本骰子</h1>
+	<% if('undefined' !== typeof(poolfund)) {%>
+	<p>奖池：<%=poolfund%></p>
+	<% }%>
+	<% if('undefined' !== typeof(lottery_num)) {%>
+	<p>期号：<%=lottery_num%></p>
+	<% }%>
+	<div>
+		<% if('undefined' !== typeof(bet_info)) { %>
+		<table border="1">
+			<tr>
+				<th>address</th>
+				<th>first</th>
+				<th>second</th>
+			</tr>
+			<% bet_info.forEach(function(item){%>
+			<tr>
+				<td><%=item[0]%></td>
+				<td><%=item[1]%></td>
+				<td><%=item[2]%></td>
+			</tr>
+			<% }) %>
+		</table>			
+		<% } %>
+	</div>
+	<div><a href="/game">当期投注</a></div>
+</body>
+</html>

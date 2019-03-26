@@ -1,0 +1,43 @@
+{
+  "name": "0xbank",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "start": "node ./bin/www"
+  },
+  "dependencies": {
+    "cookie-parser": "~1.4.3",
+    "cron": "^1.6.0",
+    "crypto": "^1.0.1",
+    "debug": "~2.6.9",
+    "ejs": "~2.5.7",
+    "ethereumjs-tx": "^1.3.7",
+    "express": "~4.16.0",
+    "http-errors": "~1.6.2",
+    "keccak": "^2.0.0",
+    "mongo": "^0.1.0",
+    "morgan": "~1.9.0",
+    "redis": "^2.8.0",
+    "secp256k1": "^3.6.0",
+    "sleep": "^5.2.3",
+    "web3": "^0.19.1"
+  },
+  "description": "0xbank is a centralized way to safely store de-centralized data.",
+  "main": "app.js",
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/yinsongbj/0xbank.git"
+  },
+  "keywords": [
+    "0xbank",
+    "ethereum",
+    "keystore"
+  ],
+  "author": "yinsong",
+  "license": "GPL-3.0-or-later",
+  "bugs": {
+    "url": "https://github.com/yinsongbj/0xbank/issues"
+  },
+  "homepage": "https://github.com/yinsongbj/0xbank#readme"
+}

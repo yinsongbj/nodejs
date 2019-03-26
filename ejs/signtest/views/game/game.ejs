@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+	<title>game demo</title>
+</head>
+<body>
+	<h1>日本骰子</h1>
+	<% if('undefined' !== typeof(poolfund)) {%>
+	<p>奖池：<%=poolfund%></p>
+	<% }%>
+	<% if('undefined' !== typeof(lottery_num)) {%>
+	<p>期号：<%=lottery_num%></p>
+	<% }%>
+	<% if('undefined' !== typeof(bet_count)) {%>
+	<p>参与投注人数：<%=bet_count%> 人</p>
+	<% }%>
+	<form id="create" method="post" action="/game/doBet">
+		<label> 帐号：</label><input type="text" name="user_address" />
+		<label> 私钥：</label><input type="text" name="user_private" />
+		<input type="submit" value="投注" /><br>
+	</form>
+	<div id="user_address"></div>
+	<div>		
+		<% if('undefined' !== typeof(err)) {%>
+		<p>错误信息：<%=err%></p>
+		<% }%>
+		<% if('undefined' !== typeof(player)) {%>
+		<p>投注者：<%=player%></p>
+		<% }%>
+		<% if('undefined' !== typeof(first)) {%>
+		<p>第一个骰子：<%=first%></p>
+		<% }%>
+		<% if('undefined' !== typeof(second)) {%>
+		<p>第二个骰子：<%=second%></p>
+		<% }%>
+	</div>
+	<div><a href="/game/history">当期投注历史</a></div>
+</body>
+</html>

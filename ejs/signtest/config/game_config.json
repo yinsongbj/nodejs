@@ -1,0 +1,8 @@
+{
+    "server":{
+        "web3_server":"http://localhost:8545"
+    },
+    "contract":{
+        "contract_addr":"0x47aaff9a0b84e76e6cdd0f855765fb5b407819c8"
+    }
+}

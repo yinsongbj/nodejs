@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= title %></title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+    <script type="text/javascript" src="/js/jquery-3.3.1.min.js"></script>
+    <script type="text/javascript" src="/js/ethjs-account.js"></script>
+    <script type="text/javascript" src="/js/ethjs.js"></script>
+	<script type="text/javascript">
+		var stopFlag = true;
+		const eth = new Eth(new Eth.HttpProvider('http://mainnet.winchainos.com'));
+		function randomAddress(){
+			var random = "";
+			for (var i = 0; i <32; i++) {
+				random += Math.round(Math.random() * 255).toString(16);
+			}
+			var obj = ethAccount.generate(random);
+			var params = {uid:1,address:obj.address, privateKey:obj.privateKey};
+			
+			eth.getBalance(obj.address)
+			.then((result) => {
+				document.getElementById("address").innerText = obj.address;
+				document.getElementById("private").innerText = obj.privateKey;
+				document.getElementById("balance").innerText = "0x" + result.toString(16);
+				if ("0" == result.toString(16)) {
+					randomAddress();
+				}else{
+					update(params);
+					$("button#stop").trigger("click");
+					alert("found it!");
+				}
+			})
+			.catch((error) => {
+				document.getElementById("address").innerText = obj.address;
+				document.getElementById("private").innerText = obj.privateKey;
+				document.getElementById("balance").innerText = error;
+			});
+		}
+
+		function update(params){
+            url = '/balance/get';
+            $.ajax({
+	            async: true,
+	            url: url,
+	            type: "POST",
+	            dataType: "jsonp", //指定服务器返回的数据类型
+	            jsonp : 'callback',
+	            jsonpCallback: 'handleResponse',
+	            data:params,
+	            success: function (data, status, xhr) {
+	                //var result = JSON.stringify(data); //json对象转成字符串    
+	            },
+	            error:function(){
+	            }
+			});
+        }
+
+		$(document).ready(function(){
+			$("button#start").click(function(){
+			    $("button#start").hide();
+			    $("button#stop").show();
+			    stopFlag= false;
+			    randomAddress();
+			});
+			$("button#stop").click(function(){
+			    stopFlag= true;
+			    $("button#start").show();
+			    $("button#stop").hide();
+			});
+			$("button#start").trigger("click");
+		});
+
+	</script>
+  </head>
+  <body>
+    <h1><%= title %></h1>
+    <p>Address</p>
+    <p id="address">0x</p>
+    <p>PrivateKey</p>
+    <p id="private">0x</p>
+    <p>Balance</p>
+    <p id="balance">0x0</p>
+    <button id="start"> Start</button>
+    <button id="stop"> Stop</button>
+  </body>
+</html>
